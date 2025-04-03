@@ -13,7 +13,7 @@ const Header = () => {
   const navItems = ["Home", "About", "Nutrition", "Exercise", "BMI", "Donate", "Contact"];
 
   return (
-    <header className="bg-white py-4 mb-5">
+    <header className="bg-white py-4">
       <div className="flex items-center justify-between sm:justify-around px-6 mb-4 pb-2 border-b-2 border-gray-300">
         <img src="healthedu.png" alt="HealthEduJourney Logo" className="h-10 w-auto" />
         <p className="font-bold text-xl text-[maroon] hidden sm:block">
