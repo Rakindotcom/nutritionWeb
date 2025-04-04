@@ -10,7 +10,7 @@ const Header = () => {
     setIsOpen(false);
   };
 
-  const navItems = ["Home", "About", "Nutrition", "Exercise", "BMI", "Donate", "Contact"];
+  const navItems = ["Home", "About", "Nutrition", "Exercise", "BMI", "Contact"];
 
   return (
     <header className="bg-white py-4">
@@ -38,7 +38,7 @@ const Header = () => {
                 <Link
                   to={path}
                   onClick={handleLinkClick}
-                  className="block py-4 px-7 transition-all duration-300 cursor-pointer bg-gray-100 text-gray-800 font-semibold rounded-lg text-center hover:bg-green-500 hover:text-white"
+                  className="block py-4 px-7 transition-all duration-300 cursor-pointer bg-gray-100 text-gray-800 font-semibold rounded-lg text-center hover:bg-teal-800 hover:text-white"
                 >
                   {item}
                 </Link>

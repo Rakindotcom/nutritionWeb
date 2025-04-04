@@ -6,7 +6,7 @@ const Footer = () => {
   const navItems = ["Home", "About", "Nutrition", "Exercise", "BMI", "Donate", "Contact"];
 
   return (
-    <footer className="bg-gray-700 text-white border-t-2 border-gray-600 mt-6">
+    <footer className="bg-gray-700 text-white border-t-2 border-gray-600">
       <div className="max-w-6xl mx-auto px-6 py-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-8">
           {/* Logo Section */}

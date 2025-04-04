@@ -64,7 +64,7 @@ const BMI = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto">
+    <div className="max-w-lg mx-auto mb-4">
       {/* Teal Background Box */}
       <div className="p-6 bg-teal-800 shadow-lg rounded-2xl">
         <h2 className="text-4xl text-center font-extrabold text-white mb-6">

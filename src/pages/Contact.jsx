@@ -43,7 +43,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="bg-white flex items-center justify-center p-4">
+    <div className="bg-white flex items-center justify-center p-4 mb-4">
       <div className="flex flex-col md:flex-row w-full max-w-4xl shadow-lg border-2 border-black rounded-lg overflow-hidden">
         {/* Left Panel: Contact Info */}
         <div className="md:w-1/2 bg-teal-800 p-6 text-white flex flex-col justify-center">
