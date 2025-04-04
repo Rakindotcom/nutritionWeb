@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { FaInstagram, FaFacebook, FaTwitter } from "react-icons/fa";  // Importing the necessary icons
 
 const Footer = () => {
-  const navItems = ["Home", "About", "Nutrition", "Exercise", "BMI", "Donate", "Contact"];
+  const navItems = ["Home", "About", "Nutrition", "Exercise", "BMI", "Contact"];
 
   return (
     <footer className="bg-gray-700 text-white border-t-2 border-gray-600">

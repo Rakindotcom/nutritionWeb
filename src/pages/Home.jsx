@@ -71,7 +71,7 @@ const Home = () => {
               <div 
                 key={index}
                 onClick={() => toggleFAQ(index)}
-                className="group bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 cursor-pointer"
+                className="group bg-white p-6 rounded-xl border shadow-sm hover:shadow-md transition-shadow duration-200 cursor-pointer"
                 role="button"
                 tabIndex="0"
                 aria-expanded={openFAQ === index}
