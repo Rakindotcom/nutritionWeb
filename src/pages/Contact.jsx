@@ -1,25 +1,22 @@
 import React, { useState } from 'react';
-import { FaWhatsapp, FaFacebook, FaInstagram, FaTelegram } from 'react-icons/fa'; // Importing icons
+import { FaWhatsapp, FaFacebook, FaInstagram, FaTelegram } from 'react-icons/fa';
+import emailjs from 'emailjs-com';
 
 const Contact = () => {
-  // State to hold form data
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: ''
   });
 
-  // State to track submission status
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  // Check if form is valid
   const isFormValid =
     formData.name.trim() &&
     formData.email.trim() &&
     formData.message.trim();
 
-  // Update form state when user types
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -28,18 +25,27 @@ const Contact = () => {
     }));
   };
 
-  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!isFormValid) return;
     setIsSubmitting(true);
-    // Simulate form submission (e.g., API call)
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitted(true);
-      // Optionally, reset form fields after submission
-      setFormData({ name: '', email: '', message: '' });
-    }, 1000);
+
+    emailjs
+      .send(
+        'service_eh87n8o',     // 🔁 Replace with your actual Service ID
+        'template_3wbu2gb',    // 🔁 Replace with your actual Template ID
+        formData,
+        'bxrQDAr3TICUIRJlj'      // 🔁 Replace with your actual Public Key
+      )
+      .then(() => {
+        setIsSubmitting(false);
+        setSubmitted(true);
+        setFormData({ name: '', email: '', message: '' });
+      })
+      .catch((error) => {
+        console.error('EmailJS Error:', error);
+        setIsSubmitting(false);
+      });
   };
 
   return (
@@ -52,32 +58,21 @@ const Contact = () => {
           </h1>
           <div className="text-center space-y-1">
             <p>
-              📍{' '}
-              <a
-                href="https://maps.app.goo.gl/XH8XiRda9qVuFygE9"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-yellow-300"
-              >
-                Islamic University of Technology, Boardbazar, Gazipur, Bangladesh
-              </a>
-            </p>
-            <p>
               📧{' '}
               <a
-                href="mailto:rakin08@iut-dhaka.edu"
+                href="mailto:zobeda018@gmail.com"
                 className="hover:text-yellow-300"
               >
-                rakin08@iut-dhaka.edu
+                zobeda018@gmail.com
               </a>
             </p>
             <p>
               ☎️{' '}
               <a
-                href="tel:+8801927383669"
+                href="tel:+1 (669) 292-7682"
                 className="hover:text-yellow-300"
               >
-                01927383669
+                +1 (669) 292-7682
               </a>
             </p>
           </div>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FiChevronDown, FiChevronUp, FiArrowRight } from 'react-icons/fi';
+import HeroSlider from '../components/HeroSlider';
 
 const Home = () => {
   const [openFAQ, setOpenFAQ] = useState(null);
@@ -59,6 +60,8 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      <HeroSlider />
 
       {/* Improved FAQ Section */}
       <section className="py-12 md:py-16 px-6 md:px-12 bg-teal-50">

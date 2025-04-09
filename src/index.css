@@ -34,3 +34,23 @@ body {
     text-align-last: center;
   }
 }
+
+/* Swiper Pagination Styles */
+.swiper-pagination {
+  bottom: 2rem !important;
+  z-index: 50 !important;
+}
+
+.swiper-pagination-bullet {
+  background: rgba(156, 163, 175, 0.5) !important; /* gray-400/50 */
+  height: 8px !important;
+  width: 32px !important;
+  border-radius: 4px !important;
+  transition: all 0.2s ease !important;
+  opacity: 1 !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: goldenrod !important; /* blue-300 */
+  width: 48px !important;
+}

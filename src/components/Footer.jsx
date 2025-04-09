@@ -51,10 +51,10 @@ const Footer = () => {
           <div className="text-center sm:text-left">
             <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
             <p className="mb-2">
-              <span className="font-bold">Email:</span> info@healthedujourney.com
+              <span className="font-bold">Email:</span> zobeda018@gmail.com
             </p>
             <p className="mb-2">
-              <span className="font-bold">Phone:</span> +1 (555) 123-4567
+              <span className="font-bold">Phone:</span> +1 (669) 292-7682
             </p>
           </div>
         </div>
