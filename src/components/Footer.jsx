@@ -11,7 +11,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-8">
           {/* Logo Section */}
           <div className="flex flex-col items-center sm:items-start">
-            <img src="healthedu.png" alt="HealthEduJourney Logo" className="h-12 w-auto mb-4" />
+            <img src="/healthedu.png" alt="HealthEduJourney Logo" className="h-12 w-auto mb-4" />
             <p className="font-bold text-lg text-center sm:text-left">
               Your Path to a Healthier Life
             </p>

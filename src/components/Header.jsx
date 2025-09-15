@@ -10,12 +10,12 @@ const Header = () => {
     setIsOpen(false);
   };
 
-  const navItems = ["Home", "About", "Nutrition", "Exercise", "BMI", "Contact"];
+  const navItems = ["Home", "About", "Nutrition", "Exercise", "BMI", "Blog", "Contact"];
 
   return (
     <header className="bg-white py-4">
       <div className="flex items-center justify-between sm:justify-around px-6 mb-4 pb-2 border-b-2 border-gray-300">
-        <img src="healthedu.png" alt="HealthEduJourney Logo" className="h-10 w-auto" />
+        <img src="/healthedu.png" alt="HealthEduJourney Logo" className="h-10 w-auto" />
         <p className="font-bold text-xl text-[maroon] hidden sm:block">
           Your Path to a Healthier Life
         </p>
@@ -25,11 +25,10 @@ const Header = () => {
       </div>
       <nav className="max-w-6xl mx-auto border-b-2 pb-2 border-gray-500">
         <ul
-          className={`bg-[#fcfbfc] rounded-lg text-center ${
-            isOpen
+          className={`bg-[#fcfbfc] rounded-lg text-center ${isOpen
               ? "flex flex-col justify-between p-4"
               : "hidden sm:flex sm:flex-row sm:justify-around"
-          }`}
+            }`}
         >
           {navItems.map((item, index) => {
             const path = item === "Home" ? "/" : `/${item.toLowerCase()}`;
