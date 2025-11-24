@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../firebase/config';
 import { collection, getDocs, orderBy, query } from 'firebase/firestore';
-import { Calendar, Clock, User } from 'lucide-react';
+import { Calendar, Clock, User, X } from 'lucide-react';
 
 const Blog = () => {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [selectedBlog, setSelectedBlog] = useState(null);
 
   useEffect(() => {
     fetchBlogs();
@@ -79,7 +80,7 @@ const Blog = () => {
           </p>
         </div>
 
-        {/* Blog Posts */}
+        {/* Blog Posts Grid */}
         {blogs.length === 0 ? (
           <div className="text-center py-20">
             <div className="bg-white rounded-2xl shadow-lg p-12 max-w-md mx-auto">
@@ -93,76 +94,53 @@ const Blog = () => {
             </div>
           </div>
         ) : (
-          <div className="space-y-12">
-            {blogs.map((blog, index) => (
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {blogs.map((blog) => (
               <article
                 key={blog.id}
-                className={`group bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1 ${
-                  index === 0 ? 'lg:grid lg:grid-cols-2 lg:gap-0' : ''
-                }`}
+                className="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col border-2 border-black"
               >
-                {/* Featured Image */}
+                {/* 5:4 Image */}
                 {blog.imageUrl && (
-                  <div className={`${index === 0 ? 'lg:order-2' : ''} relative overflow-hidden`}>
+                  <div className="relative overflow-hidden aspect-[5/4]">
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10"></div>
                     <img
                       src={blog.imageUrl}
                       alt={blog.title}
-                      className={`w-full object-cover transition-transform duration-500 group-hover:scale-105 ${
-                        index === 0 ? 'h-80 lg:h-full' : 'h-64 sm:h-80'
-                      }`}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                   </div>
                 )}
 
                 {/* Content */}
-                <div className={`p-8 lg:p-12 ${index === 0 ? 'lg:order-1 lg:flex lg:flex-col lg:justify-center' : ''}`}>
+                <div className="p-6 flex flex-col flex-grow">
                   {/* Meta Information */}
-                  <div className="flex flex-wrap items-center gap-6 text-sm text-gray-500 mb-6">
-                    <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 bg-teal-100 rounded-full flex items-center justify-center">
-                        <Calendar className="w-4 h-4 text-teal-600" />
-                      </div>
-                      <span className="font-medium">{formatDate(blog.createdAt)}</span>
+                  <div className="flex flex-wrap items-center gap-4 text-xs text-gray-500 mb-4">
+                    <div className="flex items-center gap-1">
+                      <Calendar className="w-3 h-3 text-teal-600" />
+                      <span>{formatDate(blog.createdAt)}</span>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 bg-teal-100 rounded-full flex items-center justify-center">
-                        <Clock className="w-4 h-4 text-teal-600" />
-                      </div>
-                      <span className="font-medium">{getReadingTime(blog.content)}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 bg-teal-100 rounded-full flex items-center justify-center">
-                        <User className="w-4 h-4 text-teal-600" />
-                      </div>
-                      <span className="font-medium">HealthEdu Team</span>
+                    <div className="flex items-center gap-1">
+                      <Clock className="w-3 h-3 text-teal-600" />
+                      <span>{getReadingTime(blog.content)}</span>
                     </div>
                   </div>
 
                   {/* Title */}
-                  <h2 className={`font-bold text-gray-900 mb-4 leading-tight ${
-                    index === 0 ? 'text-3xl lg:text-4xl xl:text-5xl' : 'text-2xl lg:text-3xl'
-                  }`}>
+                  <h2 className="text-xl font-bold text-gray-900 mb-3 leading-tight line-clamp-2">
                     {blog.title}
                   </h2>
 
                   {/* Excerpt */}
-                  <p className={`text-gray-600 mb-6 leading-relaxed ${
-                    index === 0 ? 'text-lg lg:text-xl' : 'text-base lg:text-lg'
-                  }`}>
+                  <p className="text-gray-600 mb-4 leading-relaxed line-clamp-3 flex-grow">
                     {blog.excerpt}
                   </p>
 
-                  {/* Content Preview */}
-                  <div className="prose prose-gray max-w-none mb-8">
-                    <p className="text-gray-700 leading-relaxed">
-                      {blog.content.substring(0, index === 0 ? 300 : 200)}
-                      {blog.content.length > (index === 0 ? 300 : 200) && '...'}
-                    </p>
-                  </div>
-
                   {/* Read More Button */}
-                  <button className="inline-flex items-center gap-2 bg-teal-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-teal-700 transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                  <button 
+                    onClick={() => setSelectedBlog(blog)}
+                    className="inline-flex items-center gap-2 bg-teal-600 text-white px-5 py-2.5 rounded-full font-semibold hover:bg-teal-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg w-fit"
+                  >
                     Read Full Article
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -174,6 +152,71 @@ const Blog = () => {
           </div>
         )}
       </div>
+
+      {/* Blog Overlay Modal */}
+      {selectedBlog && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fadeIn">
+          <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl animate-slideUp">
+            {/* Close Button */}
+            <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center z-10">
+              <h3 className="text-xl font-bold text-gray-900 pr-8">{selectedBlog.title}</h3>
+              <button
+                onClick={() => setSelectedBlog(null)}
+                className="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+                aria-label="Close"
+              >
+                <X className="w-5 h-5 text-gray-600" />
+              </button>
+            </div>
+
+            {/* Modal Content */}
+            <div className="overflow-y-auto max-h-[calc(90vh-80px)] p-6">
+              {/* Featured Image */}
+              {selectedBlog.imageUrl && (
+                <div className="mb-6 rounded-xl overflow-hidden">
+                  <img
+                    src={selectedBlog.imageUrl}
+                    alt={selectedBlog.title}
+                    className="w-full h-auto object-cover"
+                  />
+                </div>
+              )}
+
+              {/* Meta Information */}
+              <div className="flex flex-wrap items-center gap-6 text-sm text-gray-500 mb-6 pb-6 border-b border-gray-200">
+                <div className="flex items-center gap-2">
+                  <Calendar className="w-4 h-4 text-teal-600" />
+                  <span>{formatDate(selectedBlog.createdAt)}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Clock className="w-4 h-4 text-teal-600" />
+                  <span>{getReadingTime(selectedBlog.content)}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <User className="w-4 h-4 text-teal-600" />
+                  <span>HealthEdu Team</span>
+                </div>
+              </div>
+
+              {/* Excerpt */}
+              {selectedBlog.excerpt && (
+                <div className="mb-6">
+                  <p className="text-lg text-gray-700 italic leading-relaxed">
+                    {selectedBlog.excerpt}
+                  </p>
+                </div>
+              )}
+
+              {/* Full Content */}
+              <div className="prose prose-lg max-w-none">
+                <div className="text-gray-800 leading-relaxed whitespace-pre-wrap">
+                  {selectedBlog.content}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, EffectFade, Pagination } from 'swiper/modules';
+import { Link } from 'react-router-dom';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 import 'swiper/css/pagination';
@@ -46,9 +47,12 @@ export default function HeroSlider() {
                 <Icon size={60} className="text-white mb-6 mx-auto drop-shadow-md" />
                 <h2 className="text-3xl md:text-5xl font-bold mb-4">{title}</h2>
                 <p className="text-lg md:text-xl text-gray-200">{subtitle}</p>
-                <button className="mt-6 bg-white/90 text-gray-900 px-6 py-3 rounded-full font-semibold hover:bg-white hover:scale-105 transition-transform duration-300">
+                <Link 
+                  to="/about"
+                  className="mt-6 inline-block bg-white/90 text-gray-900 px-6 py-3 rounded-full font-semibold hover:bg-white hover:scale-105 transition-transform duration-300"
+                >
                   Start Your Journey
-                </button>
+                </Link>
               </div>
             </div>
           </SwiperSlide>

@@ -69,7 +69,7 @@ const Contact = () => {
 
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Contact Info */}
-          <div className="bg-white rounded-3xl shadow-2xl p-8 lg:p-12">
+          <div className="bg-white rounded-3xl shadow-2xl p-8 lg:p-12 border-2 border-black">
             <h2 className="text-3xl font-bold text-gray-900 mb-8">Let's Connect</h2>
             
             <div className="space-y-8">
@@ -146,7 +146,7 @@ const Contact = () => {
           </div>
 
           {/* Contact Form */}
-          <div className="bg-white rounded-3xl shadow-2xl p-8 lg:p-12">
+          <div className="bg-white rounded-3xl shadow-2xl p-8 lg:p-12 border-2 border-black">
             <h2 className="text-3xl font-bold text-gray-900 mb-8">Send us a Message</h2>
             
             <form onSubmit={handleSubmit} className="space-y-6">
